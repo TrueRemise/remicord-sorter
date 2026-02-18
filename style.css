@@ -1,13 +1,18 @@
 body {
   font-family: sans-serif;
   text-align: center;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 380px;
+    align-items: flex-start;
+    gap: 48px;
+    width: min(100%, 1200px);
+    margin: 0 auto;
+    padding: 0 16px 24px;
   }
   
   
@@ -51,17 +56,15 @@ img {
   filter: brightness(0.85);
 }
   #controls {
-    position: fixed;          /* 👈 NOT relative to images */
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
-  
+    position: static;
+
     display: flex;
     flex-direction: column;  /* 👈 Tie on top, Undo below */
     align-items: center;
     gap: 16px;
-  
+
     z-index: 10;
+    align-self: center;
   }
   
   #controls button {
@@ -78,5 +81,59 @@ img {
   
   #controls button:hover {
     background: #f0f0f0;
+  }
+
+  @media (max-width: 900px) {
+    .container {
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .card p,
+    .card img {
+      width: min(42vw, 280px);
+    }
+
+    #controls button {
+      width: min(22vw, 170px);
+      padding: 16px 0;
+      font-size: clamp(18px, 3.8vw, 28px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card p,
+    .card img {
+      width: min(92vw, 360px);
+    }
+
+    #controls {
+      order: 2;
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .card:first-child {
+      order: 1;
+    }
+
+    .card:last-child {
+      order: 3;
+    }
+
+    #controls button {
+      width: min(44vw, 200px);
+      font-size: clamp(22px, 6vw, 34px);
+      padding: 14px 0;
+    }
   }
   
