@@ -485,14 +485,14 @@ function finish() {
 
     .rest {
       --border: 3px;
-      width: 1700px;
+      width: min(1700px, 100%);
       display: grid;
       grid-auto-flow: column;
       grid-template-rows: repeat(8, auto);
       grid-auto-columns: calc(1000px / var(--cols));
       gap: 0;
-      justify-content: start;
-      margin: 0;
+      justify-content: center;
+      margin: 0 auto;
     }
 
     .rest .cell {
@@ -506,7 +506,52 @@ function finish() {
       margin-left: calc(-1 * var(--border));
       margin-top: calc(-1 * var(--border));
     }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+        overflow-x: hidden;
+      }
+
+      .top10 {
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .top10-column {
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cell {
+        width: min(44vw, 180px);
+        box-sizing: border-box;
+      }
+
+      .name {
+        font-size: 16px;
+        word-break: break-word;
+      }
+
+      .rest {
+        width: 100%;
+        grid-template-rows: none;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
+      }
+
+      .rest .cell {
+        margin-left: 0;
+        font-size: 15px;
+        padding: 9px 10px;
+      }
+    }
   `;
+
 
   document.head.appendChild(style);
 
