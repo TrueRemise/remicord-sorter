@@ -132,25 +132,25 @@ function preloadImage(src) {
   // =========================
   function loadImages() {
     const excludeAlt = filterAltCheckbox?.checked;
-  
+    
     images = IMAGE_FILES
-      .filter(file => {
-        if (!excludeAlt) return true;
-        return !file.includes("_N");
-      })
+      .filter(file => !excludeAlt || !file.includes("_N"))
       .map(file => ({
         src: `images/${file}`,
         name: file
-        .replace(/_N(?=\.)/, "")   // remove _N only if before extension
-        .replace(/\.[^/.]+$/, "")
-
+          .replace(/_N(?=\.)/, "")
+          .replace(/\.[^/.]+$/, "")
       }));
-      
+  
+   
     shuffleArray(images);
-
-    countText.textContent =
-      `${images.length} images loaded`;
-  }
+    images.forEach(img => {
+        const pre = new Image();
+        pre.src = img.src;
+      });
+    
+      countText.textContent = `${images.length} images loaded`;
+    }
   
   
   loadImages();
@@ -158,6 +158,7 @@ function preloadImage(src) {
   // =========================
   // START
   // =========================
+  
     startBtn.onclick = () => {
         loadImages();   // 👈 RELOAD WITH FILTER STATE
         stateStack = [];
