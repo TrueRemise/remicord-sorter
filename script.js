@@ -100,7 +100,6 @@ let mergedRun = [];
 
 let stateStack = [];
 let completedComparisons = 0;
-let estimatedComparisons = 1;
 
 // =========================
 // DOM
@@ -171,7 +170,6 @@ startBtn.onclick = () => {
   mergedRun = [];
 
   completedComparisons = 0;
-  estimatedComparisons = Math.max(1, Math.ceil(images.length * Math.log2(Math.max(2, images.length))));
 
   updateProgress();
   startScreen.style.display = "none";
@@ -284,8 +282,66 @@ function showComparison(left, right) {
 }
 
 function updateProgress() {
-  const percent = Math.min(100, Math.floor((completedComparisons / estimatedComparisons) * 100));
+  const remainingComparisons = estimateRemainingComparisons();
+  const totalComparisons = completedComparisons + remainingComparisons;
+  const percent = totalComparisons === 0
+    ? 100
+    : Math.min(100, Math.floor((completedComparisons / totalComparisons) * 100));
   progress.textContent = `Comparing: ${percent}% done.`;
+}
+
+function estimateRemainingComparisons() {
+  let remaining = 0;
+
+  let simRuns = runs.map(run => run.length);
+  let simNextRuns = nextRuns.map(run => run.length);
+
+  // Active merge still in progress.
+  if (mergeLeft && mergeRight) {
+    const leftRemaining = mergeLeft.length - leftIndex;
+    const rightRemaining = mergeRight.length - rightIndex;
+
+    if (leftRemaining > 0 && rightRemaining > 0) {
+      remaining += leftRemaining + rightRemaining - 1;
+    }
+
+    // Length of the run after current merge is completed.
+    simNextRuns.push(mergedRun.length + leftRemaining + rightRemaining);
+  }
+
+  // Finish the remainder of the current pass.
+  while (simRuns.length >= 2) {
+    const leftLen = simRuns.shift();
+    const rightLen = simRuns.shift();
+    remaining += leftLen + rightLen - 1;
+    simNextRuns.push(leftLen + rightLen);
+  }
+
+  if (simRuns.length === 1) {
+    simNextRuns.push(simRuns.shift());
+  }
+
+  // Continue with following passes until one run remains.
+  simRuns = simNextRuns;
+
+  while (simRuns.length > 1) {
+    const nextPass = [];
+
+    while (simRuns.length >= 2) {
+      const leftLen = simRuns.shift();
+      const rightLen = simRuns.shift();
+      remaining += leftLen + rightLen - 1;
+      nextPass.push(leftLen + rightLen);
+    }
+
+    if (simRuns.length === 1) {
+      nextPass.push(simRuns.shift());
+    }
+
+    simRuns = nextPass;
+  }
+
+  return remaining;
 }
 
 // =========================
