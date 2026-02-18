@@ -39,6 +39,7 @@ img {
   }
   
   .card img {
+    background: #222;
     position: relative;
     width: 360px;                 /* 👈 image width */
     display: block;

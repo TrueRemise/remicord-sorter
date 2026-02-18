@@ -101,6 +101,15 @@ const IMAGE_FILES = [
   // =========================
   // DOM
   // =========================
+  const preloadCache = new Set();
+
+function preloadImage(src) {
+  if (!src || preloadCache.has(src)) return;
+  const img = new Image();
+  img.src = src;
+  preloadCache.add(src);
+}
+
   const filterAltCheckbox = document.getElementById("filterAlt");
 
   const startBtn = document.getElementById("startBtn");
@@ -162,7 +171,12 @@ const IMAGE_FILES = [
         startScreen.style.display = "none";
         container.style.display = "flex";
         controls.style.display = "block";
-      
+        // preload first item
+        if (images.length >= 2) {
+          preloadImage(images[0].src);
+          preloadImage(images[1].src);
+        }
+        
         nextInsert();
       };
       
@@ -198,11 +212,27 @@ const IMAGE_FILES = [
         return;
       }
   
-    mid = Math.floor((low + high) / 2);
-  
-    const opponent = tiers[mid][0];
-    showComparison(currentItem, tiers[mid][0]);
-  }
+      
+      mid = Math.floor((low + high) / 2);
+      const opponent = tiers[mid][0];
+    
+      // 🔹 PRELOAD current comparison
+      preloadImage(currentItem.src);
+      preloadImage(opponent.src);
+    
+      // 🔹 PRELOAD next possible comparisons (prediction)
+      const nextLow = Math.floor((mid + 1 + high) / 2);
+      const nextHigh = Math.floor((low + mid - 1) / 2);
+    
+      if (tiers[nextLow]?.[0]) {
+        preloadImage(tiers[nextLow][0].src);
+      }
+      if (tiers[nextHigh]?.[0]) {
+        preloadImage(tiers[nextHigh][0].src);
+      }
+    
+      showComparison(currentItem, opponent);
+    }
   
   // =========================
   // UI
