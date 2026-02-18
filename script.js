@@ -14,6 +14,7 @@ const IMAGE_FILES = [
   "Alice.png",
   "Aithne_N.png",
   "Akashi_N.png",
+  "Auriel_N.png",
   "Ari.png",
   "Arla_N.png",
   "Ayaka_N.png",
@@ -61,6 +62,7 @@ const IMAGE_FILES = [
   "Pummy.png",
   "Rei.png",
   "Ryne.png",
+  "Rossa.png",
   "Remi.png",
   "Renia.png",
   "Renna_N.png",
@@ -71,6 +73,7 @@ const IMAGE_FILES = [
   "Snowie.png",
   "Suko.png",
   "Synesis.png",
+  "Synn.png",
   "Tema.png",
   "Toko.png",
   "Tsukino.png",
@@ -78,6 +81,7 @@ const IMAGE_FILES = [
   "Vyndi.png",
   "Watta.png",
   "Yume_N.png",
+  "Yukiho.png",
   "Yuzuki.png",
   "Zeksi.png",
   "Zena_N.png",
@@ -467,7 +471,7 @@ function finish() {
     .cell {
       background: #ffffff;
       border: 3px solid #7aa6d8;
-      width: 160px;
+      width: 148px;
       text-align: center;
       padding: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
@@ -479,6 +483,11 @@ function finish() {
       height: auto;
       display: block;
       margin-bottom: 8px;
+<<<<<<< HEAD
+=======
+      position: relative;
+      left: -3px;
+>>>>>>> 5c4562e (Update sorter)
     }
 
     .name {
@@ -490,6 +499,7 @@ function finish() {
 
     .rest {
       --border: 3px;
+<<<<<<< HEAD
       width: min(1700px, 100%);
       display: grid;
       grid-auto-flow: column;
@@ -638,7 +648,30 @@ function finish() {
       }
     }
   `;
+=======
+      width: 1200px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(8, auto);
+      grid-auto-columns: calc(900px / var(--cols));
+      gap: 0;
+      justify-content: start;
+      margin: 0;
+    }
+>>>>>>> 5c4562e (Update sorter)
 
+    .rest .cell {
+      box-sizing: border-box;
+      padding: 9px 15px;
+      text-align: center;
+      font-weight: 530;
+      font-size: 17px;
+      border: var(--border) solid #44d37d;
+      border-bottom-color: #7ad88d;
+      margin-left: calc(-1 * var(--border));
+      margin-top: calc(-1 * var(--border));
+    }
+  `;
 
   document.head.appendChild(style);
 
@@ -687,4 +720,8 @@ function finish() {
   });
 
   document.body.appendChild(restWrap);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5c4562e (Update sorter)
