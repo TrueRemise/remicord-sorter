@@ -498,9 +498,6 @@ function finish() {
       gap: 0;
       justify-content: center;
       margin: 0 auto;
-      overflow-x: auto;
-      padding: 4px 4px 20px;
-      box-sizing: border-box;
     }
 
     .rest .cell {
@@ -550,6 +547,50 @@ function finish() {
         margin-left: 0;
         font-size: 15px;
         min-width: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 12px;
+        overflow-x: hidden;
+      }
+
+      .top10 {
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .top10-column {
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cell {
+        width: min(44vw, 180px);
+        box-sizing: border-box;
+      }
+
+      .name {
+        font-size: 16px;
+        word-break: break-word;
+      }
+
+      .rest {
+        width: 100%;
+        grid-template-rows: none;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
+      }
+
+      .rest .cell {
+        margin-left: 0;
+        font-size: 15px;
+        padding: 9px 10px;
       }
     }
 
