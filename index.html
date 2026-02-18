@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Sorter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Remicord Sorter</h1>
+
+  <!-- START SCREEN -->
+  <div id="start">
+    <p id="count"></p>
+    <button id="startBtn">Click to Start</button>
+    <label style="display:block; margin-top:120px; font-size:16px;">
+        <input type="checkbox" id="filterAlt" unchecked>
+        OCSona only.
+      </label>
+      
+  </div>
+
+  <!-- SORTER -->
+  <p id="progress"></p>
+
+  <div class="container" style="display:none">
+    <div class="card">
+      <img id="left">
+      <p id="leftName"></p>
+    </div>
+
+    <div class="card">
+      <img id="right">
+      <p id="rightName"></p>
+    </div>
+  </div>
+
+  <div id="controls" style="display:none; margin-top:20px;">
+    <button id="tie">Tie</button>
+    <button id="undo">Undo</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 380px;
+  }
+  
+  
+
+img {
+  width: 300px;
+  height: auto;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid black;
+    box-sizing: border-box;
+  }
+  .card p {
+    width: 360px;                 /* 👈 SAME as image */
+    margin: 0;
+  
+    padding: 12px 0;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+  
+  }
+  
+  .card img {
+    position: relative;
+    width: 360px;                 /* 👈 image width */
+    display: block;
+  
+    border-bottom: 3px solid black;        /* 👈 glue to name box */
+  }
+  
+.card img:hover {
+  filter: brightness(0.85);
+}
+  #controls {
+    position: fixed;          /* 👈 NOT relative to images */
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+  
+    display: flex;
+    flex-direction: column;  /* 👈 Tie on top, Undo below */
+    align-items: center;
+    gap: 16px;
+  
+    z-index: 10;
+  }
+  
+  #controls button {
+    display: block;
+    width: 260px;             /* 👈 button width */
+    padding: 28px 0;          /* 👈 button height */
+    font-size: 46px;
+    font-weight: bold;
+  
+    background: white;
+    border: 3px solid black;
+    cursor: pointer;
+  }
+  
+  #controls button:hover {
+    background: #f0f0f0;
+  }
+  
