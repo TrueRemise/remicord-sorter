@@ -346,7 +346,7 @@ function preloadImage(src) {
   
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
   
     /* =========================
@@ -356,8 +356,8 @@ function preloadImage(src) {
     .top10 {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
   
     .top10-column {
@@ -369,7 +369,7 @@ function preloadImage(src) {
     .cell {
       background: #ffffff;
       border: 3px solid #7aa6d8;
-      width: 200px;
+      width: 160px;
       text-align: center;
       padding: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
@@ -413,11 +413,11 @@ function preloadImage(src) {
     
     .rest .cell {
     box-sizing: border-box;
-    padding: 12px 22px;
+    padding: 9px 18px;
     
     text-align: center;                     /* 👈 CENTER TEXT */
-    font-weight: 550;
-    font-size: 20px;
+    font-weight: 520;
+    font-size: 18px;
     
     border: var(--border) solid #44d37d;
     border-bottom-color: #7ad88d;
