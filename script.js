@@ -17,7 +17,6 @@ const IMAGE_FILES = [
   "Asterine.png",
   "Angie_N.png",
   "Aina_N.png",
-  "Paddy_N.png",
   "Beliana.png",
   "Bailey.png",
   "Anny.png",
