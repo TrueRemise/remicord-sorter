@@ -42,7 +42,6 @@ const IMAGE_FILES = [
   "Kero_N.png",
   "Keiko_N.png",
   "Jaro_N.png",
-  "Kay_N.png",
   "Komi_N.png",
   "Kumiko_N.png",
   "Kuroha_N.png",
